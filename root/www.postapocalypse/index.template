@@ -7,4 +7,9 @@
  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css">
  <style>body{margin:0 6%}section{text-align:center;margin-top:15%}</style></head>
 <body>
- <section><h1>fountainhead.impyr.io</h1><a href="/play">play now</a></section></body></html>
+  <section><h1>fountainhead.impyr.io</h1>
+    <p>This impyr.io instance is no longer active. You can review the final state <a href="https://github.com/impyrio/archon-fountainhead">here</a>.</p></section>
+  <hr>
+  <p>The final commit is shown below:</p>
+      <pre><code>{{ git-log }}</code></pre>
+  </body></html>

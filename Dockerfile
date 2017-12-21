@@ -2,24 +2,30 @@
 # Impyrio Dockerfile
 #
 FROM alpine
-MAINTAINER Patrick Kohler
+LABEL author="Patrick Kohler"
 
 # Arguments
-ARG GIT_REPO=https://github.com/impyrio/archon-placeholder.git
-
-# Install Git & NodeJS
-RUN apk add --update git nginx nodejs
+ARG GIT_REPO=https://github.com/impyrio/fountainhead.impyr.io.git
 
 # Copy core files
 COPY root /
 
+# Install dependencies
+RUN apk add --update git nginx nodejs
+
 # Create Archon folder
-RUN mkdir -p /app/archon && cd /app/archon
-RUN git clone $GIT_REPO .
+RUN mkdir -p /app/archon
+
+# Get current state
+RUN git clone "$GIT_REPO" /app/archon
 
 # Archon Security
 RUN addgroup -S g_archon
 RUN adduser -h /app/archon -SHD archon g_archon
+
+# Enable chron jobs
+RUN rc-service crond start && rc-update add crond
+RUN run-parts /etc/periodic/daily
 
 RUN nginx &
 
